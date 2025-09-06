@@ -3,11 +3,18 @@ import { configDotenv } from "dotenv"
 import { connectDB } from "./Lib/Utils/Connection"
 import Route from "./Routes"
 import logger from "morgan"
+import cors from 'cors';
 
 configDotenv()
 
 const app: Application = express()
 const port = process.env.PORT ?? 3000
+
+app.use(
+    cors({
+        origin: '*'
+    })
+);
 
 connectDB()
 
