@@ -7,7 +7,7 @@ export const middleware = (req: Request, res: Response<Res>, next: NextFunction)
 	const authorization: string | undefined = req.headers.authorization
 
 	if (!authorization) {
-		res.status(ResponseCode.AUTH_ERROR).json({
+		res.status(ResponseCode.KEY_MISSING).json({
 			status: false,
 			message: "No credentials sent!"
 		})
@@ -27,7 +27,7 @@ export const middleware = (req: Request, res: Response<Res>, next: NextFunction)
 	const token = authorization.substring(7) // Remove "Bearer " prefix
 
 	if (!token) {
-		res.status(ResponseCode.AUTH_ERROR).json({
+		res.status(ResponseCode.KEY_MISSING).json({
 			status: false,
 			message: "Token not provided!"
 		})

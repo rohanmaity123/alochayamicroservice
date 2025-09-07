@@ -82,7 +82,7 @@ const login = (req: Request<any, any, AdminLoginRequest>, res: Response<Res<Admi
                         dbError(error, res);
                     });
             } else {
-                res.status(ResponseCode.NOT_FOUND_ERROR).json({
+                res.status(ResponseCode.USER_NOT_FOUND).json({
                     status: false,
                     message: "Invalid credentials or admin not found"
                 });
@@ -123,7 +123,7 @@ const getProfile = asyncHandler(async (req: Request, res: Response<Res<AdminProf
     ]);
 
     if (!admin || admin.length === 0) {
-        res.status(ResponseCode.NOT_FOUND_ERROR).json({
+        res.status(ResponseCode.USER_NOT_FOUND).json({
             status: false,
             message: "Admin profile not found"
         });
